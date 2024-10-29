@@ -8,4 +8,9 @@ public class CalculatorTest {
     public void shouldReturnZero_onEmptyString() {
         assertEquals(0, Calculator.add(""));
     }
+
+    @Test
+    public void shouldReturnValue_onStringValue() {
+        assertEquals(5, Calculator.add("5"));
+    }
 }
