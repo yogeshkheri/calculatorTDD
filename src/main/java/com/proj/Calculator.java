@@ -13,11 +13,12 @@ public class Calculator {
             return  0;
         }else {
             if(numbers.startsWith("//")){
-                Matcher m = Pattern.compile("//(.)\n(.*)").matcher(numbers);
+                Matcher m = Pattern.compile("^//(?:\\[([^\\]]+)\\]|(.))\\n(.*?)$").matcher(numbers);
                 m.matches();
-                String customDelimiter = m.group(1);
-                String number = m.group(2);
-                List<String> testList = Arrays.asList(number.split(customDelimiter));
+                String customDelimiter = m.group(2) != null ? m.group(2) : m.group(1);
+                String escapedDelimiter = Pattern.quote(customDelimiter);
+                String number = m.group(3);
+                List<String> testList = Arrays.asList(number.split(escapedDelimiter));
                 checkNegativeNumbers(testList);
                 return testList.stream().mapToInt(Integer::valueOf).filter(value -> value<1000).sum();
             }else {

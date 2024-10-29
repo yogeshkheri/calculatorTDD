@@ -49,4 +49,9 @@ public class CalculatorTest {
     public void shouldReturnSumValue_withCustomDelimiter_with1000Limit_onMultipleStringValue() {
         assertEquals(6, Calculator.add("//,\n1,2,3,1001"));
     }
+
+    @Test
+    public void shouldReturnSumValue_withCustomDelimiter_with_onMultipleStringValue() {
+        assertEquals(6, Calculator.add("//[***]\n1***2***3"));
+    }
 }
