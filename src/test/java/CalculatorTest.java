@@ -18,4 +18,9 @@ public class CalculatorTest {
     public void shouldReturnAdditionValue_onStringValue() {
         assertEquals(6, Calculator.add("1,5"));
     }
+
+    @Test
+    public void shouldReturnSumValue_onMultipleStringValue() {
+        assertEquals(6, Calculator.add("1,2,3"));
+    }
 }
