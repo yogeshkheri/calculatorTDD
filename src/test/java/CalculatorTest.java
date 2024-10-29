@@ -13,4 +13,9 @@ public class CalculatorTest {
     public void shouldReturnValue_onStringValue() {
         assertEquals(5, Calculator.add("5"));
     }
+
+    @Test
+    public void shouldReturnAdditionValue_onStringValue() {
+        assertEquals(6, Calculator.add("1,5"));
+    }
 }
