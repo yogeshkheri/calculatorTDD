@@ -23,4 +23,9 @@ public class CalculatorTest {
     public void shouldReturnSumValue_onMultipleStringValue() {
         assertEquals(6, Calculator.add("1,2,3"));
     }
+
+    @Test
+    public void shouldReturnSumValue_withTwoDelimiter_onMultipleStringValue() {
+        assertEquals(7, Calculator.add("1\n2,4"));
+    }
 }
