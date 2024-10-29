@@ -19,11 +19,11 @@ public class Calculator {
                 String number = m.group(2);
                 List<String> testList = Arrays.asList(number.split(customDelimiter));
                 checkNegativeNumbers(testList);
-                return testList.stream().mapToInt(Integer::valueOf).sum();
+                return testList.stream().mapToInt(Integer::valueOf).filter(value -> value<1000).sum();
             }else {
                 List<String> testList = Arrays.asList(numbers.split("[,\n" + "]"));
                 checkNegativeNumbers(testList);
-                return testList.stream().mapToInt(Integer::valueOf).sum();
+                return testList.stream().mapToInt(Integer::valueOf).filter(value -> value<1000).sum();
             }
         }
     }

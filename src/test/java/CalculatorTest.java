@@ -44,4 +44,9 @@ public class CalculatorTest {
 
         assertTrue(actualMessage.contains(expectedMessage));
     }
+
+    @Test
+    public void shouldReturnSumValue_withCustomDelimiter_with1000Limit_onMultipleStringValue() {
+        assertEquals(6, Calculator.add("//,\n1,2,3,1001"));
+    }
 }
