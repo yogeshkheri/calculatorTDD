@@ -17,7 +17,7 @@ public class Calculator {
                 m.matches();
                 String customDelimiter = m.group(1);
                 String number = m.group(2);
-                List<String> testList = Arrays.asList(numbers.split(customDelimiter));
+                List<String> testList = Arrays.asList(number.split(customDelimiter));
                 checkNegativeNumbers(testList);
                 return testList.stream().mapToInt(Integer::valueOf).sum();
             }else {
