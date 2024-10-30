@@ -1,5 +1,7 @@
 package com.proj;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,12 +15,21 @@ public class Calculator {
             return  0;
         }else {
             if(numbers.startsWith("//")){
-                Matcher m = Pattern.compile("^//(?:\\[([^\\]]+)\\]|(.))\\n(.*?)$").matcher(numbers);
+                Matcher m = Pattern.compile("^//((?:\\[([^\\]]+)\\])+|(.))\\n(.*?)$").matcher(numbers);
                 m.matches();
-                String customDelimiter = m.group(2) != null ? m.group(2) : m.group(1);
-                String escapedDelimiter = Pattern.quote(customDelimiter);
-                String number = m.group(3);
-                List<String> testList = Arrays.asList(number.split(escapedDelimiter));
+                String delimiters;
+                String numberString;
+                if (m.group(1).startsWith("[")) {
+                    // Multiple delimiters in square brackets
+                    delimiters = m.group(1).replaceAll("\\[|\\]", "");
+                    numberString = m.group(4);
+                } else {
+                    // Single character delimiter
+                    delimiters = m.group(3);
+                    numberString = m.group(4);
+                }
+                String delimiterPattern =  Pattern.quote(delimiters);
+                List<String> testList = Arrays.asList(StringUtils.split(numberString,delimiterPattern));
                 checkNegativeNumbers(testList);
                 return testList.stream().mapToInt(Integer::valueOf).filter(value -> value<1000).sum();
             }else {

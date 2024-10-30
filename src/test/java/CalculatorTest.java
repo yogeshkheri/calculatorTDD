@@ -51,7 +51,17 @@ public class CalculatorTest {
     }
 
     @Test
+    public void shouldReturnSumValue_withCustomDelimiter_withLargeLengthDelimiter_onMultipleStringValue() {
+        assertEquals(7, Calculator.add("//[***]\n1***2***4"));
+    }
+
+    @Test
     public void shouldReturnSumValue_withCustomDelimiter_with_onMultipleStringValue() {
-        assertEquals(6, Calculator.add("//[***]\n1***2***3"));
+        assertEquals(6, Calculator.add("//[*][%]\n1*2%3"));
+    }
+
+    @Test
+    public void shouldReturnSumValue_withCustomDelimiter_withLargeMultipleLengthDelimiter_onMultipleStringValue() {
+        assertEquals(9, Calculator.add("//[***][,,]\n1***2,,6"));
     }
 }
